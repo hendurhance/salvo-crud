@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->string('title');
+            $table->string('slug')->unique()->index();
+            $table->longText('content');
             $table->timestamps();
         });
     }
