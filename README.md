@@ -40,7 +40,7 @@ graph TD
 ### Install using Local Environment
 1. Clone the repository
 ```bash
-git clone 
+git clone https://github.com/hendurhance/salvo-crud.git
 ```
 2. Go to the project directory
 ```bash
@@ -76,6 +76,50 @@ php artisan serve
 ```
 
 ### Install using Docker
+1. Clone the repository
+```bash
+git clone https://github.com/hendurhance/salvo-crud.git
+```
+2. Go to the project directory
+```bash
+cd salvo-crud
+```
+3. Create a copy of the `.env.example` file and rename it to `.env`
+```bash
+cp .env.example .env
+```
+4. Build the docker image
+```bash
+docker-compose up -d
+```
+5. Run the container
+```bash
+docker exec -it salvo-app-1 bash
+```
+Make sure you are inside the container before running the next commands.
+```bash
+cd /var/www/html
+```
+6. Install the dependencies
+```bash
+scripts/dependencies.sh
+```
+If you are getting an error, run the command below to fix the permission.
+```bash
+chmod +x scripts/dependencies.sh
+```
+7. Run the database migration
+```bash
+php artisan migrate
+```
+8. Run the database seeder
+```bash
+php artisan db:seed
+```
+9. Run the test
+```bash
+php artisan test
+```
 
 ## Technologies
 The application is built using the following technologies:
