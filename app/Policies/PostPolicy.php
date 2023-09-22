@@ -15,7 +15,7 @@ class PostPolicy
     {
         return $user->hasPermissionTo('view post')
             ? Response::allow()
-            : Response::deny('You do not have permission to view any posts.');
+            : Response::deny('You do not have permission to view any posts.', 403);
     }
 
     /**
@@ -25,7 +25,7 @@ class PostPolicy
     {
         return $user->hasPermissionTo('view post')
             ? Response::allow()
-            : Response::deny('You do not have permission to view this post.');
+            : Response::deny('You do not have permission to view this post.', 403);
     }
 
     /**
@@ -35,7 +35,7 @@ class PostPolicy
     {
         return $user->hasPermissionTo('create post')
             ? Response::allow()
-            : Response::deny('You do not have permission to create a post.');
+            : Response::deny('You do not have permission to create a post.', 403);
     }
 
     /**
@@ -45,7 +45,7 @@ class PostPolicy
     {
         return $user->hasPermissionTo('edit post')
             ? Response::allow()
-            : Response::deny('You do not have permission to update this post.');
+            : Response::deny('You do not have permission to update this post.', 403);
     }
 
     /**
@@ -55,7 +55,7 @@ class PostPolicy
     {
         return $user->hasPermissionTo('delete post')
             ? Response::allow()
-            : Response::deny('You do not have permission to delete this post.');
+            : Response::deny('You do not have permission to delete this post.', 403);
     }
 
     /**
