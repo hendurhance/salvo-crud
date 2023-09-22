@@ -22,6 +22,7 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'edit post']);
         Permission::create(['name' => 'delete post']);
         Permission::create(['name' => 'view post']);
+        Permission::create(['name' => 'create role']);
 
         $roles = ['developer', 'support', 'super-admin'];
 
