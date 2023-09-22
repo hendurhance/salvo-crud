@@ -1,4 +1,4 @@
-# Salvo Agency Technical Test
+# Salvo Agency Technical Test | [Live Demo](#)
 ## Introduction
 This is a technical test for Salvo Agency. The test is to create a simple web application that implements multi-tenancy level of authorization. The application is a simple CRUD application that allows users to create, read, update and delete a list of post. The application is built using the Laravel with Breeze scaffolding. The application is deployed on Heroku and can be accessed at [#](#).
 
@@ -29,6 +29,7 @@ graph TD
   subgraph Users
     developer -- Has Permission --> create_post
     developer -- Has Permission --> view_post
+    developer -- Has Permission --> edit_post
     support -- Has Permission --> view_post
     super_admin -- Has Permission --> create_post
     super_admin -- Has Permission --> edit_post

@@ -19,10 +19,14 @@ class RegistrationTest extends TestCase
 
     public function test_new_users_can_register(): void
     {
+        // Run PermissionSeeder
+        $this->artisan('db:seed', ['--class' => 'PermissionSeeder']);
+
         $response = $this->post('/register', [
             'name' => 'Test User',
             'email' => 'test@example.com',
             'password' => 'password',
+            'role' => 'support',
             'password_confirmation' => 'password',
         ]);
 

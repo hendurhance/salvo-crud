@@ -38,7 +38,7 @@ class PermissionSeeder extends Seeder
         $support = Role::findByName('support');
         $superAdmin = Role::findByName('super-admin');
 
-        $developer->givePermissionTo(['create post', 'view post']);
+        $developer->givePermissionTo(['create post', 'view post', 'edit post']);
         $support->givePermissionTo('view post');
         $superAdmin->givePermissionTo(Permission::all());
 
