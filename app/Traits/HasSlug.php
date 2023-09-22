@@ -30,17 +30,19 @@ trait HasSlug
     {
         $slug = Str::slug($this->title);
 
+        $originalSlug = $slug; 
+
         $latestSlug =
-            static::whereRaw("slug RLIKE '^{$slug}(-[0-9]+)?$'")
-                ->latest('id')
-                ->value('slug');
+            static::where('slug', $slug)
+            ->latest('id')
+            ->value('slug');
 
         if ($latestSlug) {
-            $pieces = explode('-', $latestSlug);
+            $slug .= '-' . mt_rand(1, 9999);
 
-            $number = intval(end($pieces));
-
-            $slug .= '-' . ($number + 1);
+            while (static::where('slug', $slug)->exists()) {
+                $slug = $originalSlug . '-' . mt_rand(1, 9999);
+            }
         }
 
         return $slug;
