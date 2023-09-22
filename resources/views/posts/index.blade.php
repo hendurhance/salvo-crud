@@ -30,7 +30,7 @@
                                     <td class="border-b border-slate-100 text-white dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">{{ $post->title }}</td>
                                     <td class="border-b border-slate-100 text-white dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">{{ $post->created_at }}</td>
                                     <td class="border-b border-slate-100 text-white dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">{{ $post->updated_at }}</td>
-                                    <td class="border-b border-slate-100 text-white dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">
+                                    <td class="border-b border-slate-100 text-white dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400 flex">
                                         @can('view', $post)
                                         <a href="{{ route('posts.show', $post->id) }}" class="border border-blue-500 hover:bg-blue-500 hover:text-white px-4 py-2 rounded-md"><i class="fas fa-eye"></i></a>
                                         @endcan

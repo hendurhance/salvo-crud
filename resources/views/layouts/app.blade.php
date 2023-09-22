@@ -24,6 +24,12 @@
                 <header class="bg-white dark:bg-gray-800 shadow">
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
+
+                        @if(session('success'))
+                        <div class="bg-blue-300 mt-2 p-4">
+                            <span class="text-white">{{ session('success') }}</span>
+                        </div>
+                        @endif
                     </div>
                 </header>
             @endif

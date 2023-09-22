@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -31,10 +32,15 @@ class PostController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * 
+     * @param \App\Http\Requests\PostRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        //
+        $this->authorize('create', Post::class);
+        $post = $request->user()->posts()->create($request->validated());
+        return redirect()->route('posts.show', $post)->with('success', 'Post created successfully');
     }
 
     /**
@@ -53,7 +59,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        $this->authorize('edit', $post);
+        $this->authorize('update', $post);
         return view('posts.edit', [
             'post' => $post->load('user'),
         ]);
@@ -62,9 +68,11 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
+    public function update(PostRequest $request, Post $post)
     {
-        
+        $this->authorize('update', $post);
+        $post->update($request->validated());
+        return redirect()->route('posts.show', $post)->with('success', 'Post updated successfully');
     }
 
     /**
@@ -72,6 +80,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $this->authorize('delete', $post);
+        $post->delete();
+        return redirect()->route('posts.index')->with('success', 'Post deleted successfully');
     }
 }
